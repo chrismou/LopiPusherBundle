@@ -29,7 +29,7 @@ class AuthController extends Controller
     public function authAction(Request $request)
     {
         if (!$this->container->has('lopi_pusher.authenticator')) {
-            throw new \Exception('The authenticator service does not exsit.');
+            throw new \Exception('The authenticator service does not exist.');
         }
 
         $responseData = array();
@@ -39,7 +39,7 @@ class AuthController extends Controller
         $data = $socketId . ':' . $channelName;
 
         if (!$authenticator->authenticate($socketId, $channelName)) {
-            throw new AccessDeniedException('Request authentication denied');
+            throw new AccessDeniedException('Request authentication denied.');
         }
 
         if (strpos($channelName, 'presence') === 0 && $authenticator instanceof ChannelAuthenticatorPresenceInterface) {
